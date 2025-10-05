@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+  - Laser
+  - Saber
+  - LaserMissed
   layers:
   - Default
   - TransparentFX

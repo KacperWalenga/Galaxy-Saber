@@ -121,3 +121,4 @@ crashlytics-build.properties
     required = true
 .vsconfig
 /GeneratedAssets
+/Maps/{test}*

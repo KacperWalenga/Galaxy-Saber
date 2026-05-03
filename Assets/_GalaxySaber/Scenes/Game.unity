@@ -2347,11 +2347,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8806329115733545878, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
   m_PrefabInstance: {fileID: 1373153106}
   m_PrefabAsset: {fileID: 0}
---- !u!20 &1374809970 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7917674758326848207, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
-  m_PrefabInstance: {fileID: 1373153106}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1405032202
 GameObject:
   m_ObjectHideFlags: 0
@@ -3959,10 +3954,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2046629159}
     m_Modifications:
-    - target: {fileID: 1554611512396704991, guid: a67d9e9961a38ed4e8bffd31cde99ba9, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1374809970}
     - target: {fileID: 3612148599313032861, guid: a67d9e9961a38ed4e8bffd31cde99ba9, type: 3}
       propertyPath: m_Name
       value: Select Song UI
@@ -4006,26 +3997,6 @@ PrefabInstance:
     - target: {fileID: 3759969189129573273, guid: a67d9e9961a38ed4e8bffd31cde99ba9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9050808656134911529, guid: a67d9e9961a38ed4e8bffd31cde99ba9, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1374809970}
-    - target: {fileID: 9193085625547003204, guid: a67d9e9961a38ed4e8bffd31cde99ba9, type: 3}
-      propertyPath: m_Pivot.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193085625547003204, guid: a67d9e9961a38ed4e8bffd31cde99ba9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -19.999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193085625547003204, guid: a67d9e9961a38ed4e8bffd31cde99ba9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.000030517578
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193085625547003204, guid: a67d9e9961a38ed4e8bffd31cde99ba9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -73.99996
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -13,7 +13,7 @@ public class BeatMapInfo
     public string SongFileName;
     public float Duration;
     public DifficultySet[] DifficultySets;
-    
+
     public BeatMapInfo(
         string version,
         string songName,
@@ -24,8 +24,8 @@ public class BeatMapInfo
         string coverImageFilename,
         string songFileName,
         float duration,
-        
-        DifficultySet[] difficultySets)
+        DifficultySet[] difficultySets
+    )
     {
         Version = version;
         SongName = songName;

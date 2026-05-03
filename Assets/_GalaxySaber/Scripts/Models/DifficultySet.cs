@@ -5,13 +5,19 @@ public class DifficultySet
 {
     public string Difficulty;
     public string BeatMapFilename;
+    public int NoteJumpMovementSpeed;
+    public int NotesCount;
     
     public DifficultySet(
         string difficulty,
-        string beatMapFilename
+        string beatMapFilename,
+        int noteJumpMovementSpeed,
+        int notesCount
         )
     {
         Difficulty = difficulty;
-        BeatMapFilename = beatMapFilename;
+        beatMapFilename = beatMapFilename;
+        NoteJumpMovementSpeed = noteJumpMovementSpeed;
+        NotesCount = notesCount;
     }
 }

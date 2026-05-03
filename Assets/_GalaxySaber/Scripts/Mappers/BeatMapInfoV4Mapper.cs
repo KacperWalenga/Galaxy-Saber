@@ -26,21 +26,37 @@ public static class BeatMapInfoV4Mapper
             coverImageFilename: imagePath,
             songFileName: songPath,
             duration: dto.Audio?.SongDuration ?? 0,
-            difficultySets: MapDifficulties(dto.DifficultyBeatmaps)
+            difficultySets: MapDifficulties(dto.DifficultyBeatmaps, mapPath)
         );
     }
 
-    private static DifficultySet[] MapDifficulties(V4DifficultyBeatmapDto[] beatmaps)
+    private static DifficultySet[] MapDifficulties(
+        V4DifficultyBeatmapDto[] beatmaps,
+        string mapPath
+    )
     {
         if (beatmaps == null || beatmaps.Length == 0)
             return Array.Empty<DifficultySet>();
 
         return beatmaps
-            .Where(x => x != null && !string.IsNullOrWhiteSpace(x.BeatmapDataFilename))
-            .Select(x => new DifficultySet(
-                x.Difficulty ?? string.Empty,
-                x.BeatmapDataFilename
-            ))
+            .Where(beatMap =>
+                beatMap != null &&
+                !string.IsNullOrWhiteSpace(beatMap.BeatmapDataFilename))
+            .Select(beatMap =>
+            {
+                var beatmapPath = Path.Combine(mapPath, beatMap.BeatmapDataFilename);
+
+                var notesCount = BeatMapNoteCounter.CountNotes(beatmapPath);
+
+                var parsedNoteJumpMovementSpeed = int.Parse(beatMap.NoteJumpMovementSpeed);
+
+                return new DifficultySet(
+                    beatMap.Difficulty ?? string.Empty,
+                    beatMap.BeatmapDataFilename,
+                    parsedNoteJumpMovementSpeed,
+                    notesCount
+                );
+            })
             .ToArray();
     }
 }

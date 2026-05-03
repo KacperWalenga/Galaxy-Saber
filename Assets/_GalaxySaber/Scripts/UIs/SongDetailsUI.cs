@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,9 +9,10 @@ public class SongDetailsUI : MonoBehaviour
     [SerializeField] private GameObject canvas;
     
     [Header("Song information")]
-    [SerializeField] private TMP_Text title;
-    [SerializeField] private TMP_Text author;
-    [SerializeField] private TMP_Text length;
+    [SerializeField] private TMP_Text titleText;
+    [SerializeField] private TMP_Text authorText;
+    [SerializeField] private TMP_Text lengthText;
+    [SerializeField] private TMP_Text notesCountText;
     [SerializeField] private TMP_Dropdown difficultyDropdown;
     [SerializeField] private Image image;
 
@@ -24,9 +26,9 @@ public class SongDetailsUI : MonoBehaviour
         if(!canvas.activeSelf)
             canvas.SetActive(true);
         
-        title.text = beatMapInfo.SongName;
-        author.text = beatMapInfo.SongAuthor;
-        length.text = songLength;
+        titleText.text = beatMapInfo.SongName;
+        authorText.text = beatMapInfo.SongAuthor;
+        lengthText.text = songLength;
         image.sprite = songImage;
         difficultySets = beatMapInfo.DifficultySets;
         
@@ -39,6 +41,15 @@ public class SongDetailsUI : MonoBehaviour
             difficultyDropdown.options.Add(optionData);
         }
         
+        OnDifficultyChanged(0);
+        
         difficultyDropdown.RefreshShownValue();
-    } 
+        
+        difficultyDropdown.onValueChanged.AddListener(OnDifficultyChanged);
+    }
+
+    private void OnDifficultyChanged(int value)
+    {
+        notesCountText.text = difficultySets[value].NotesCount.ToString();
+    }
 }

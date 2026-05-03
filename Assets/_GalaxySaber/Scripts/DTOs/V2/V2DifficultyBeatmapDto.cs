@@ -9,4 +9,7 @@ public class V2DifficultyBeatmapDto
 
     [JsonProperty("_beatmapFilename")]
     public string BeatmapFilename;
+
+    [JsonProperty("_noteJumpMovementSpeed")]
+    public string NoteJumpMovementSpeed;
 }

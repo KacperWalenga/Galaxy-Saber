@@ -22,23 +22,37 @@ public static class BeatMapInfoV2Mapper
             coverImageFilename: songPath,
             songFileName: imagePath,
             duration: 0,
-            difficultySets: MapDifficulties(dto.DifficultyBeatmapSets)
+            difficultySets: MapDifficulties(dto.DifficultyBeatmapSets, mapPath)
         );
     }
 
-    private static DifficultySet[] MapDifficulties(V2DifficultyBeatmapSetDto[] sets)
+    private static DifficultySet[] MapDifficulties(
+        V2DifficultyBeatmapSetDto[] sets,
+        string mapPath
+    )
     {
         if (sets == null || sets.Length == 0)
             return Array.Empty<DifficultySet>();
 
         return sets
-            .Where(x => x?.DifficultyBeatmaps != null)
-            .SelectMany(x => x.DifficultyBeatmaps)
-            .Where(x => x != null && !string.IsNullOrWhiteSpace(x.BeatmapFilename))
-            .Select(x => new DifficultySet(
-                x.Difficulty ?? string.Empty,
-                x.BeatmapFilename
-            ))
+            .Where(set => set?.DifficultyBeatmaps != null)
+            .SelectMany(set => set.DifficultyBeatmaps)
+            .Where(beatmap =>
+                beatmap != null &&
+                !string.IsNullOrWhiteSpace(beatmap.BeatmapFilename))
+            .Select(beatmap =>
+            {
+                var beatmapPath = Path.Combine(mapPath, beatmap.BeatmapFilename);
+
+                var notesCount = BeatMapNoteCounter.CountNotes(beatmapPath);
+
+                return new DifficultySet(
+                    beatmap.Difficulty ?? string.Empty,
+                    beatmap.BeatmapFilename,
+                    int.Parse(beatmap.NoteJumpMovementSpeed),
+                    notesCount
+                );
+            })
             .ToArray();
     }
 }

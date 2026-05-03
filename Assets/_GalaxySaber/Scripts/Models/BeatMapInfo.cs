@@ -11,6 +11,7 @@ public class BeatMapInfo
     public float BeatsPerMinute;
     public string CoverImageFilename;
     public string SongFileName;
+    public float Duration;
     public DifficultySet[] DifficultySets;
     
     public BeatMapInfo(
@@ -22,6 +23,8 @@ public class BeatMapInfo
         float beatsPerMinute,
         string coverImageFilename,
         string songFileName,
+        float duration,
+        
         DifficultySet[] difficultySets)
     {
         Version = version;
@@ -32,6 +35,7 @@ public class BeatMapInfo
         BeatsPerMinute = beatsPerMinute;
         CoverImageFilename = coverImageFilename;
         SongFileName = songFileName;
+        Duration = duration;
         DifficultySets = difficultySets;
     }
 }

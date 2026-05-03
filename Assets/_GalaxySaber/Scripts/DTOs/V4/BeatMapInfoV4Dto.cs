@@ -19,8 +19,8 @@ public class BeatMapInfoV4Dto : IBeatMapInfoDto
     [JsonProperty("difficultyBeatmaps")]
     public V4DifficultyBeatmapDto[] DifficultyBeatmaps;
 
-    public BeatMapInfo ToModel()
+    public BeatMapInfo ToModel(string mapPath)
     {
-        return BeatMapInfoV4Mapper.ToDomain(this);
+        return BeatMapInfoV4Mapper.ToDomain(this, mapPath);
     }
 }

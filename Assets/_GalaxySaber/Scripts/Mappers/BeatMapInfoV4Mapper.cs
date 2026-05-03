@@ -1,9 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
 public static class BeatMapInfoV4Mapper
 {
-    public static BeatMapInfo ToDomain(BeatMapInfoV4Dto dto)
+    public static BeatMapInfo ToDomain(BeatMapInfoV4Dto dto, string mapPath)
     {
         if (dto == null)
             throw new InvalidBeatMapException("BeatMapInfoV4Dto is null");
@@ -12,6 +13,9 @@ public static class BeatMapInfoV4Mapper
             .SelectMany(x => x?.BeatmapAuthors?.Mappers ?? Array.Empty<string>())
             .FirstOrDefault() ?? string.Empty;
 
+        var songPath = Path.Combine(mapPath, dto.Audio.SongFilename);
+        var imagePath = Path.Combine(mapPath, dto.CoverImageFilename);
+
         return new BeatMapInfo(
             version: dto.Version ?? string.Empty,
             songName: dto.Song?.Title ?? string.Empty,
@@ -19,8 +23,9 @@ public static class BeatMapInfoV4Mapper
             songAuthor: dto.Song?.Author ?? string.Empty,
             levelAuthorName: levelAuthorName,
             beatsPerMinute: dto.Audio?.Bpm ?? 0f,
-            coverImageFilename: dto.CoverImageFilename ?? string.Empty,
-            songFileName: dto.Audio?.SongFilename ?? string.Empty,
+            coverImageFilename: imagePath,
+            songFileName: songPath,
+            duration: dto.Audio?.SongDuration ?? 0,
             difficultySets: MapDifficulties(dto.DifficultyBeatmaps)
         );
     }

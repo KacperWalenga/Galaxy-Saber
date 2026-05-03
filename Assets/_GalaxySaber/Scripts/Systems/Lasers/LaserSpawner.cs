@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using _GalaxySaber;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(LasersPool))]
 public class LaserSpawner : MonoBehaviour
@@ -8,15 +11,25 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] private float m_spawnInterval = 1f;
 
     private LasersPool _lasersPool;
-    private bool _isSpawning = false;
+    private bool _isSpawning;
+
+    private void Awake()
+    {
+        _lasersPool = GetComponent<LasersPool>();
+    }
 
     private void Start()
     {
-        _lasersPool = GetComponent<LasersPool>();
-        
-        StartSpawning();
+        EventManager.StartListening(Consts.Events.Game.Started, StartSpawning);
+        EventManager.StartListening(Consts.Events.Game.Ended, StopSpawning);
     }
-    
+
+    private void OnDestroy()
+    {
+        EventManager.StopListening(Consts.Events.Game.Started, StartSpawning);
+        EventManager.StopListening(Consts.Events.Game.Ended, StopSpawning);
+    }
+
     public void StartSpawning()
     {
         _isSpawning = true;

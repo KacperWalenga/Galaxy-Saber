@@ -1,4 +1,4 @@
 ﻿public interface IBeatMapInfoDto
 {
-    BeatMapInfo ToModel();
+    BeatMapInfo ToModel(string mapPath);
 }

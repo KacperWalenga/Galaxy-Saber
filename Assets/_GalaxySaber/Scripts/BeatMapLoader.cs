@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using com.cyborgAssets.inspectorButtonPro;
 using Newtonsoft.Json;
@@ -5,26 +7,33 @@ using UnityEngine;
 
 public class BeatMapLoader : MonoBehaviour
 {
+    public static List<BeatMapInfo> BeatMaps { get; private set; } = new();
+
+    private void OnDestroy()
+    {
+        BeatMaps.Clear();
+    }
+
     [ProButton]
-    public void GetBeatMaps()
+    public static void LoadBeatMaps()
     {
         var folder = Path.Combine(Application.dataPath, "../Maps");
 
         if (!Directory.Exists(folder))
         {
-            Debug.LogError($"BeatMaps folder doesn't exist: {folder}", this);
+            Debug.LogError($"BeatMaps folder doesn't exist: {folder}");
             return;
         }
 
-        var maps = Directory.GetDirectories(folder);
+        var mapPaths = Directory.GetDirectories(folder);
 
-        foreach (var map in maps)
+        foreach (var mapPath in mapPaths)
         {
-            var infoDatFile = Path.Combine(map, "info.dat");
+            var infoDatFile = Path.Combine(mapPath, "info.dat");
 
             if (!File.Exists(infoDatFile))
             {
-                Debug.LogWarning($"Skipping map, info.dat not found: {infoDatFile}", this);
+                Debug.LogWarning($"Skipping map, info.dat not found: {infoDatFile}");
                 continue;
             }
 
@@ -32,23 +41,24 @@ public class BeatMapLoader : MonoBehaviour
 
             try
             {
-                var beatMap = BeatMapParser.Parse(json);
+                var beatMap = BeatMapParser.Parse(json, mapPath);
                 Debug.Log(
                     $"Loaded BeatMap: {beatMap.SongName} | v{beatMap.Version}"
                     + JsonConvert.SerializeObject(beatMap, Formatting.Indented)
                 );
+                BeatMaps.Add(beatMap);
             }
             catch (UnsupportedBeatMapVersionException e)
             {
-                Debug.LogWarning($"Skipping map: {map}\n{e.Message}", this);
+                Debug.LogWarning($"Skipping map: {mapPath}\n{e.Message}");
             }
             catch (InvalidBeatMapException e)
             {
-                Debug.LogError($"Invalid map: {map}\n{e}", this);
+                Debug.LogError($"Invalid map: {mapPath}\n{e}");
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"Unexpected error while loading map: {map}\n{e}", this);
+                Debug.LogError($"Unexpected error while loading map: {mapPath}\n{e}");
             }
         }
     }

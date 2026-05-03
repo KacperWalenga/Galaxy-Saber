@@ -1,13 +1,17 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
 public static class BeatMapInfoV2Mapper
 {
-    public static BeatMapInfo ToDomain(BeatMapInfoV2Dto dto)
+    public static BeatMapInfo ToDomain(BeatMapInfoV2Dto dto, string mapPath)
     {
         if (dto == null)
             throw new InvalidBeatMapException("BeatMapInfoV2Dto is null");
 
+        var songPath = Path.Combine(mapPath, dto.CoverImageFilename);
+        var imagePath = Path.Combine(mapPath, dto.SongFileName);
+        
         return new BeatMapInfo(
             version: dto.Version ?? string.Empty,
             songName: dto.SongName ?? string.Empty,
@@ -15,8 +19,9 @@ public static class BeatMapInfoV2Mapper
             songAuthor: dto.SongAuthor ?? string.Empty,
             levelAuthorName: dto.LevelAuthorName ?? string.Empty,
             beatsPerMinute: dto.BeatsPerMinute,
-            coverImageFilename: dto.CoverImageFilename ?? string.Empty,
-            songFileName: dto.SongFileName ?? string.Empty,
+            coverImageFilename: songPath,
+            songFileName: imagePath,
+            duration: 0,
             difficultySets: MapDifficulties(dto.DifficultyBeatmapSets)
         );
     }

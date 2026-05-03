@@ -31,8 +31,8 @@ public class BeatMapInfoV2Dto : IBeatMapInfoDto
     [JsonProperty("_difficultyBeatmapSets")]
     public V2DifficultyBeatmapSetDto[] DifficultyBeatmapSets;
 
-    public BeatMapInfo ToModel()
+    public BeatMapInfo ToModel(string path)
     {
-        return BeatMapInfoV2Mapper.ToDomain(this);
+        return BeatMapInfoV2Mapper.ToDomain(this, path);
     }
 }

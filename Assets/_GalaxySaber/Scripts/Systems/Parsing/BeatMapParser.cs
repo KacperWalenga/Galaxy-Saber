@@ -2,7 +2,7 @@
 
 public static class BeatMapParser
 {
-    public static BeatMapInfo Parse(string json)
+    public static BeatMapInfo Parse(string json, string path)
     {
         JObject jObject;
 
@@ -26,7 +26,7 @@ public static class BeatMapParser
             if (dto == null)
                 throw new InvalidBeatMapException("Failed to deserialize BeatMap v2");
 
-            return dto.ToModel();
+            return dto.ToModel(path);
         }
 
         if (version.StartsWith("4"))
@@ -35,7 +35,7 @@ public static class BeatMapParser
             if (dto == null)
                 throw new InvalidBeatMapException("Failed to deserialize BeatMap v4");
 
-            return dto.ToModel();
+            return dto.ToModel(path);
         }
 
         throw new UnsupportedBeatMapVersionException(version);

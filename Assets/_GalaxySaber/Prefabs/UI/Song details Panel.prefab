@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 8146175516006121591}
   - component: {fileID: 2133948375982111298}
   m_Layer: 5
-  m_Name: Lasers per second
+  m_Name: Lasers count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -679,7 +679,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lasers per second
+  m_text: Lasers count
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fbb7c6a04be6d8341934b839f24b42e1, type: 2}
   m_sharedMaterial: {fileID: 4687939059374929122, guid: fbb7c6a04be6d8341934b839f24b42e1, type: 2}

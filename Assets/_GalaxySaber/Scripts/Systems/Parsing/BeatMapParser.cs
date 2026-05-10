@@ -59,7 +59,24 @@ public static class BeatMapParser
         if (string.IsNullOrWhiteSpace(version))
             throw new InvalidBeatMapException("Missing version in info.dat");
         
+        if (version.StartsWith("2"))
+        {
+            var dto = jObject.ToObject<BeatMapV2Dto>();
+            if (dto == null)
+                throw new InvalidBeatMapException("Failed to deserialize BeatMap v2");
 
+            return dto.ToModel();
+        }
+        
+        if (version.StartsWith("3"))
+        {
+            var dto = jObject.ToObject<BeatMapV3Dto>();
+            if (dto == null)
+                throw new InvalidBeatMapException("Failed to deserialize BeatMap v3");
+
+            return dto.ToModel();
+        }
+        
         if (version.StartsWith("4"))
         {
             var dto = jObject.ToObject<BeatMapV4Dto>();

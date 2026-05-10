@@ -68,9 +68,4 @@ public class BeatMapLoader : MonoBehaviour
         var json = File.ReadAllText(difficultyPath);
         return BeatMapParser.ParseBeatMap(json);
     }
-    
-    public void GetBeatMap(string beatMapPAth)
-    {
-        var json = File.ReadAllText(beatMapPAth);
-    }
 }

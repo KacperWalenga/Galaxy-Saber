@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5036636364971093758}
   m_Layer: 0
   m_Name: Glow
-  m_TagString: Untagged
+  m_TagString: Saber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 522285160574955278}
   m_Layer: 0
   m_Name: Blade
-  m_TagString: Untagged
+  m_TagString: Saber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 8618840948767475477}
   m_Layer: 0
   m_Name: Attach point
-  m_TagString: Untagged
+  m_TagString: Saber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 6336289197045290099}
   m_Layer: 0
   m_Name: Lightsaber
-  m_TagString: Untagged
+  m_TagString: Saber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 9025635015000832310}
   m_Layer: 0
   m_Name: BladeLight
-  m_TagString: Untagged
+  m_TagString: Saber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -564,7 +564,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6623353347201956475}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 0, g: 0.8, b: 1, a: 1}
   m_Intensity: 0
@@ -616,7 +616,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 3294874184571611753}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Saber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 7977758304344004199}
   m_Layer: 0
   m_Name: Core
-  m_TagString: Untagged
+  m_TagString: Saber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

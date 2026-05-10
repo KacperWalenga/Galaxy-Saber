@@ -7,15 +7,15 @@ using UnityEngine;
 
 public class BeatMapLoader : MonoBehaviour
 {
-    public static List<BeatMapInfo> BeatMaps { get; private set; } = new();
+    public static List<BeatMapInfo> BeatMapsInfo { get; private set; } = new();
 
     private void OnDestroy()
     {
-        BeatMaps.Clear();
+        BeatMapsInfo.Clear();
     }
 
     [ProButton]
-    public static void LoadBeatMaps()
+    public static void LoadBeatMapsInfos()
     {
         var folder = Path.Combine(Application.dataPath, "../Maps");
 
@@ -41,12 +41,12 @@ public class BeatMapLoader : MonoBehaviour
 
             try
             {
-                var beatMap = BeatMapParser.Parse(json, mapPath);
+                var beatMap = BeatMapParser.ParseBeatMapInfo(json, mapPath);
                 Debug.Log(
                     $"Loaded BeatMap: {beatMap.SongName} | v{beatMap.Version}"
                     + JsonConvert.SerializeObject(beatMap, Formatting.Indented)
                 );
-                BeatMaps.Add(beatMap);
+                BeatMapsInfo.Add(beatMap);
             }
             catch (UnsupportedBeatMapVersionException e)
             {
@@ -56,10 +56,21 @@ public class BeatMapLoader : MonoBehaviour
             {
                 Debug.LogError($"Invalid map: {mapPath}\n{e}");
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 Debug.LogError($"Unexpected error while loading map: {mapPath}\n{e}");
             }
         }
+    }
+
+    public static BeatMap LoadBeatMap(string difficultyPath)
+    {
+        var json = File.ReadAllText(difficultyPath);
+        return BeatMapParser.ParseBeatMap(json);
+    }
+    
+    public void GetBeatMap(string beatMapPAth)
+    {
+        var json = File.ReadAllText(beatMapPAth);
     }
 }

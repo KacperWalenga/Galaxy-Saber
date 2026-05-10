@@ -16,7 +16,7 @@ public class DifficultySet
         )
     {
         Difficulty = difficulty;
-        beatMapFilename = beatMapFilename;
+        BeatMapFilename = beatMapFilename;
         NoteJumpMovementSpeed = noteJumpMovementSpeed;
         NotesCount = notesCount;
     }

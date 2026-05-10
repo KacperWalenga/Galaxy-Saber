@@ -23,6 +23,6 @@ public class WelcomeUI : MonoBehaviour
         canvas.SetActive(false);
         
         EventManager.TriggerEvent(Consts.Events.RefreshSongs);
-        EventManager.TriggerEvent(Consts.Events.UI.DisplayMusicMenu);
+        EventManager.TriggerEvent(Consts.Events.UI.LoadPlayMusicMenu);
     }
 }

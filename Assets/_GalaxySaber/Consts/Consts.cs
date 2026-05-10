@@ -6,6 +6,8 @@
         {
             public static partial class Game
             {
+                public const string Loading = "EventGameLoading";
+                public const string Loaded = "EventGameLoaded";
                 public const string Started = "EventGameStarted";
                 public const string Ended = "EventGameEnded";
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using UnityEngine;
 
 public static class BeatMapInfoV4Mapper
 {
@@ -52,7 +53,7 @@ public static class BeatMapInfoV4Mapper
 
                 return new DifficultySet(
                     beatMap.Difficulty ?? string.Empty,
-                    beatMap.BeatmapDataFilename,
+                    beatmapPath,
                     parsedNoteJumpMovementSpeed,
                     notesCount
                 );

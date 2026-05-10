@@ -6,7 +6,8 @@
         {
             public static partial class UI
             {
-                public const string DisplayMusicMenu = "EventUiDisplayMusicMenu";
+                public const string DisplayPlayMusicMenu = "EventUiDisplayMusicMenu";
+                public const string LoadPlayMusicMenu = "EventUiLoadMusicMenu";
             }
         }
     }

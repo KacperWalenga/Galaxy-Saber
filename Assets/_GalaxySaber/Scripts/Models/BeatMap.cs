@@ -1,8 +1,14 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class BeatMap : MonoBehaviour
+public class BeatMap
 {
-    public BeatData[] beatData;
+    public List<BeatData> BeatData;
+
+    public BeatMap(List<BeatData> beatData)
+    {
+        BeatData = beatData;
+    }
 }

@@ -5,7 +5,13 @@ using UnityEngine;
 public class BeatData
 {
    public float Time;
-   public int lineIndex;
-   public int lineLayer;
-   public int type;
+   public int LineIndex;
+   public int LineLayer;
+
+   public BeatData(float time, int lineIndex, int lineLayer)
+   {
+      Time = time;
+      LineIndex = lineIndex; 
+      LineLayer = lineLayer;
+   }
 }

@@ -6,7 +6,9 @@ public class Laser : MonoBehaviour
     [SerializeField] private Rigidbody m_rigidbody;
     
     [Header("Movement")]
-    [SerializeField] private float m_speed = 5f;
+    [field: SerializeField]
+    public float Speed { get; private set; } = 5f;
+    
 
     private void FixedUpdate()
     {
@@ -15,7 +17,7 @@ public class Laser : MonoBehaviour
 
     private void Move()
     {
-        var newPosition = m_rigidbody.position + transform.forward * (m_speed * Time.fixedDeltaTime);
+        var newPosition = m_rigidbody.position + transform.forward * (Speed * Time.fixedDeltaTime);
         m_rigidbody.MovePosition(newPosition);
     }
 
@@ -37,5 +39,10 @@ public class Laser : MonoBehaviour
     public void OnMissed()
     {
         LasersManager.Instance.OnLaserMiss(this);
+    }
+
+    public void SetSpeed(float speed)
+    {
+        Speed = speed;
     }
 }

@@ -9,13 +9,12 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] private List<LaserSpawnPoints> spawnPoints;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Transform hitPoint;
-
-    public float LasersSpeed = 5f;
-
+    
     private LasersPool lasersPool;
     private bool isSpawning;
     private List<BeatData> beats;
     private int nextBeatIndex;
+    private float bpm;
 
     private void Awake()
     {
@@ -34,9 +33,10 @@ public class LaserSpawner : MonoBehaviour
         EventManager.StopListening(Consts.Events.Game.Ended, StopSpawning);
     }
 
-    public void Init(List<BeatData> beatDataList, float speed)
+    public void Init(List<BeatData> beatDataList, float speed, float beatsPerMinute)
     {
         beats = beatDataList;
+        bpm = beatsPerMinute;
         nextBeatIndex = 0;
         lasersPool.SetSpeed(speed);
     }
@@ -61,7 +61,8 @@ public class LaserSpawner : MonoBehaviour
             }
 
             var travelTime = CalculateTravelTime(spawnPoint);
-            var spawnTime = Mathf.Max(0f, beat.Time - travelTime);
+            var beatTimeInSeconds = BeatToSeconds(beat.Time);
+            var spawnTime = Mathf.Max(0f, beatTimeInSeconds - travelTime);
 
             if (currentTime < spawnTime)
                 break;
@@ -125,5 +126,10 @@ public class LaserSpawner : MonoBehaviour
 
         var randomIndex = Random.Range(0, spawnPoints.Count);
         return spawnPoints[randomIndex].SpawnPoint;
+    }
+    
+    private float BeatToSeconds(float beatTime)
+    {
+        return beatTime * 60f / bpm;
     }
 }

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         EventManager.StartListening(Consts.Events.Game.Loaded, InitGame);
+        
     }
 
     private void InitGame()
@@ -26,9 +27,19 @@ public class GameManager : MonoBehaviour
         var audioClip = await AudioLoader.LoadAudioClip(beatMapInfo.SongFileName);
 
         audioSource.clip = audioClip;
-        laserSpawner.Init(beatMap.BeatData, speed);
+        laserSpawner.Init(beatMap.BeatData, speed, beatMapInfo.BeatsPerMinute);
         
         audioSource.Play();
         laserSpawner.StartSpawning();
+
+        var gameLength = audioClip.length;
+        
+        Invoke(nameof(EndGame), gameLength);
+    }
+
+    private void EndGame()
+    {
+        Debug.Log("game ended");
+        audioSource.Stop();
     }
 }

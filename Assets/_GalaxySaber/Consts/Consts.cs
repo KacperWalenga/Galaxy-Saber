@@ -4,14 +4,12 @@
     {
         public static partial class Events
         {
-            public static partial class Game
+            public static class UI
             {
-                public const string Loading = "EventGameLoading";
-                public const string Loaded = "EventGameLoaded";
-                public const string Started = "EventGameStarted";
-                public const string Ended = "EventGameEnded";
+                public const string RefreshSongs = "EventRefreshSongs";
+                public const string DisplayPlayMusicMenu = "EventUiDisplayMusicMenu";
+                public const string LoadPlayMusicMenu = "EventUiLoadMusicMenu";
             }
-            public const string RefreshSongs = "EventRefreshSongs";
         }
     }
 }

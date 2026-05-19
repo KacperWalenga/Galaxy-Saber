@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         EventManager.StartListening(Consts.Events.Game.Loaded, InitGame);
-        
+        EventManager.StartListening(Consts.Events.Game.Lost, GameLost);
     }
 
     private void InitGame()
@@ -25,21 +25,31 @@ public class GameManager : MonoBehaviour
         var difficulty = GameLoader.currentDifficulty;
         var speed = beatMapInfo.DifficultySets[difficulty].NoteJumpMovementSpeed;
         var audioClip = await AudioLoader.LoadAudioClip(beatMapInfo.SongFileName);
+        var gameLength = audioClip.length;
 
         audioSource.clip = audioClip;
         laserSpawner.Init(beatMap.BeatData, speed, beatMapInfo.BeatsPerMinute);
-        
         audioSource.Play();
         laserSpawner.StartSpawning();
-
-        var gameLength = audioClip.length;
         
         Invoke(nameof(EndGame), gameLength);
+        
+        EventManager.TriggerEvent(Consts.Events.Game.Started);
     }
 
     private void EndGame()
     {
-        Debug.Log("game ended");
         audioSource.Stop();
+        
+        EventManager.TriggerEvent(Consts.Events.Game.Ended);
+    }
+
+    private void GameLost()
+    {
+        audioSource.Stop();
+        laserSpawner.StopSpawning();
+        laserSpawner.lasersPool.DestroyAllLasers();
+        
+        EventManager.TriggerEvent(Consts.Events.Game.Ended);
     }
 }

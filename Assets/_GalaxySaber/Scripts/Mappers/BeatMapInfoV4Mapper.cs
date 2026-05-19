@@ -49,12 +49,10 @@ public static class BeatMapInfoV4Mapper
 
                 var notesCount = BeatMapNoteCounter.CountNotes(beatmapPath);
 
-                var parsedNoteJumpMovementSpeed = int.Parse(beatMap.NoteJumpMovementSpeed);
-
                 return new DifficultySet(
                     beatMap.Difficulty ?? string.Empty,
                     beatmapPath,
-                    parsedNoteJumpMovementSpeed,
+                    beatMap.NoteJumpMovementSpeed,
                     notesCount
                 );
             })

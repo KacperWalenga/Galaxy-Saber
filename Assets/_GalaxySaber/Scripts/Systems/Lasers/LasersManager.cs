@@ -1,3 +1,4 @@
+using _GalaxySaber;
 using UnityEngine;
 
 public class LasersManager : Singleton<LasersManager>
@@ -10,6 +11,8 @@ public class LasersManager : Singleton<LasersManager>
         Debug.Log("Laser missed!");
         
         _lasersPool.DisableLaser(laser);
+            
+        EventManager.TriggerEvent(Consts.Events.Laser.Missed);
     }
     
     
@@ -18,5 +21,7 @@ public class LasersManager : Singleton<LasersManager>
         Debug.Log("Laser hit by saber!");
         
         _lasersPool.DisableLaser(laser);
+        
+        EventManager.TriggerEvent(Consts.Events.Laser.Hit);
     }
 }

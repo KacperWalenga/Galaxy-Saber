@@ -47,4 +47,12 @@ public class LasersPool : MonoBehaviour
         AddActiveLaser(laser);
         return laser;
     }
+
+    public void DestroyAllLasers()
+    {
+        foreach (var laser in activeLasers)
+        {
+            laser.Disable();
+        }
+    }
 }

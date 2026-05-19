@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Linq;
 using _GalaxySaber;
 using TMPro;
 using UnityEngine;
@@ -11,8 +8,8 @@ public class SongDetailsUI : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private Button startButton;
 
-    [Header("Song information")] [SerializeField]
-    private TMP_Text titleText;
+    [Header("Song information")] 
+    [SerializeField] private TMP_Text titleText;
 
     [SerializeField] private TMP_Text authorText;
     [SerializeField] private TMP_Text lengthText;

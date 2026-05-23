@@ -10,7 +10,7 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Transform hitPoint;
     
-    private LasersPool lasersPool;
+    public LasersPool lasersPool { get; private set; }
     private bool isSpawning;
     private List<BeatData> beats;
     private int nextBeatIndex;

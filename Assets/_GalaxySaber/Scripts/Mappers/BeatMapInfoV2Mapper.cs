@@ -49,7 +49,7 @@ public static class BeatMapInfoV2Mapper
                 return new DifficultySet(
                     beatmap.Difficulty ?? string.Empty,
                     beatmapPath,
-                    int.Parse(beatmap.NoteJumpMovementSpeed),
+                    beatmap.NoteJumpMovementSpeed,
                     notesCount
                 );
             })

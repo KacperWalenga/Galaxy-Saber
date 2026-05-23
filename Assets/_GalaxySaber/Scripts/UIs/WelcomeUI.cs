@@ -22,7 +22,7 @@ public class WelcomeUI : MonoBehaviour
     {
         canvas.SetActive(false);
         
-        EventManager.TriggerEvent(Consts.Events.RefreshSongs);
+        EventManager.TriggerEvent(Consts.Events.UI.RefreshSongs);
         EventManager.TriggerEvent(Consts.Events.UI.LoadPlayMusicMenu);
     }
 }

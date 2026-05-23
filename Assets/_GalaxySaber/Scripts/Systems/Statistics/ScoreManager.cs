@@ -61,6 +61,8 @@ public class ScoreManager : MonoBehaviour
     private void GameStarted()
     {
         Score = 0;
+        HittedNotesCount = 0;
+        MissedNotesCount = 0;
 
         var difficultyIndex = GameLoader.currentDifficulty;
 
